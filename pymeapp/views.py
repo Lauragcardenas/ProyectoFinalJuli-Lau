@@ -1,21 +1,14 @@
 from http.client import HTTPResponse
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
 
-# Create your views here.
 
 def pymeapp(request):
-    return HttpResponse ("<h1>Bienvenidos a nuestra app online</h1>")
+    return render(request, "pymeapp/index.html", {})
 
-def plantilla(request):
-    
-    template= loader.get_template("plantilla.html")
-    
+def plantilla(request): 
     datos= {
         "lista":["primero", "segundo", "tercero"]
     }
+        
+    return render(request, "pymeapp/plantilla.html", datos)
     
-    plantilla_generada= template.render(datos)
-    
-    return HttpResponse (plantilla_generada)
