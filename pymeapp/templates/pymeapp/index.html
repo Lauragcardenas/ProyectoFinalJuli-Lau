@@ -22,25 +22,29 @@
             <div class="container">
                 <a class="navbar-brand" href={% url 'pymeapp' %}>Pymeapp</a>
                 <a class="navbar-brand" href={% url 'plantilla' %}>Plantilla</a>
-                
+                <a class="navbar-brand" href={% url 'crear_gerente' %}>Crear Gerente</a>
+                <a class="navbar-brand" href={% url 'crear_gerente' %}>Crear Reponedor</a>
+                <a class="navbar-brand" href={% url 'crear_gerente' %}>Crear Cajero</a>
+                <a class="navbar-brand" href={% url 'lista_gerentes' %}>Lista Gerentes</a>
             </div>
         </nav>
         <!-- Masthead-->
+        {% block "header_block" %}
         <header class="masthead">
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            {% block "header_block" %}
-                                <h1 class="mb-5">Bienvenidos a la página de inicio!</h1>
-                            {% endblock "header_block" %}
-                           
+                            {% block "header_text_block" %}
+                                <h1 class="mb-5">Bienvenidos a la página de inicio!</h1>  
+                            {% endblock "header_text_block" %}                 
                         </div>
                     </div>
                 </div>
             </div>
         </header>
+    {% endblock "header_block" %}
 
         {% block "body_block" %}
         {% endblock "body_block" %}
