@@ -15,10 +15,12 @@ class ReponedorFormulario(forms.Form):
     nombre=forms.CharField(max_length=50)
     apellido=forms.CharField(max_length=50)
     dni=forms.IntegerField()
-    email=forms.BooleanField(required=False)
+    email=forms.EmailField()
+    desempeño=forms.BooleanField(required=False)
  
 class CajeroFormulario(forms.Form):
     nombre=forms.CharField(max_length=50)
     apellido=forms.CharField(max_length=50)
     dni=forms.IntegerField()
-    email=forms.BooleanField(required=False)
+    email=forms.EmailField()
+    desempeño=forms.BooleanField(required=False)
