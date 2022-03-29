@@ -50,8 +50,8 @@ def registrarse(request):
             #return render(request, "pymeapp/index.html", {"msj": f"Se crea correctamente al usuario {username}"})
             return redirect("login")
         else:
-            return redirect(request, "pymeapp/registrarse.html", {"form": form, "msj": "El formulario no es valido"})
+            return render(request, "pymeapp/registrarse.html", {"form": form, "msj": "El formulario no es valido"})
     
     
     form = NuestroUserForm()
-    return redirect(request, "pymeapp/registrarse.html", {"form": form})
+    return render(request, "pymeapp/registrarse.html", {"form": form})
