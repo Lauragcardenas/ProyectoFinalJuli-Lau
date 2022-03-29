@@ -1,11 +1,15 @@
+from dataclasses import fields
 from django.shortcuts import render
-
 from .forms import GerenteFormulario, GerenteBusqueda, ReponedorFormulario, CajeroFormulario
 
 from .models import gerente, reponedor, cajero
-
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
+@login_required
 def crear_gerente(request):
     
     if request.method== "POST":
@@ -20,6 +24,21 @@ def crear_gerente(request):
     
     form= GerenteFormulario()
     return render(request, "puestosdetrabajoapp/crear_gerente.html", {"form": form})
+
+class DetalleGerente(DetailView):
+    model= gerente
+    template_name= "puestosdetrabajoapp/detalle_gerente.html"
+
+
+class EditarGerente(LoginRequiredMixin, UpdateView):
+    model=gerente
+    success_url= "/puestosdetrabajoapp/gerentes/"
+    fields= ["nombre", "apellido", "dni", "email"]     
+
+class BorrarGerente(LoginRequiredMixin, DeleteView):
+    model=gerente
+    success_url= "/puestosdetrabajoapp/gerentes/"
+    
 
 def crear_reponedor(request):
     
@@ -50,9 +69,6 @@ def crear_cajero(request):
     
     form= CajeroFormulario()
     return render(request, "puestosdetrabajoapp/crear_gerente.html", {"form": form})
-
-
-
 
 
 

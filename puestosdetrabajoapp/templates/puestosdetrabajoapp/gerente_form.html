@@ -1,0 +1,20 @@
+{% extends 'pymeapp/index.html' %}
+
+{% block "header_block" %}
+{% endblock "header_block" %}
+
+{% block "body_block" %}
+
+    <p>
+        <a href={% url "gerentes" %}>Volver</a>
+    </p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <button>Editar</button>
+    </form>
+
+{% endblock "body_block" %}

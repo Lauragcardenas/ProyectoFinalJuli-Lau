@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Readme que indique el orden en el que se prueban las cosas y/oo donde están las
 funcionalidades.
 
@@ -8,6 +7,4 @@ funcionalidades.
 4. La clase gerente cuenta con una busqueda por nombre
 5. La segunda app se relaciona con las ventas que se realizan en la empresa
 6. Esta segunda app posee 3 clases que se relacionan con las ventas de la empresa.
-=======
 # ProyectoFinalJuli-Lau
->>>>>>> 631f2ccacf423f86e4e96efea6edc837dd4fd98c

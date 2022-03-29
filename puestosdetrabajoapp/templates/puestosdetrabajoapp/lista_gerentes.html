@@ -3,7 +3,12 @@
 {% block "header_block" %}
 {% endblock "header_block" %}
 
-{% block "body_block" %}  
+{% block "body_block" %}
+
+
+    <p>
+        <a href={% url "crear_gerente" %}>Crear gerente</a>
+    </p>
 
     <form action="" method="get">
         {% csrf_token %}
@@ -15,7 +20,11 @@
     </form>
 
     {% for gerente in gerentes %}
-        <li>{{gerente}}</li>
+        <li>
+           <a href= {% url 'detalle_gerente' gerente.id %}>{{gerente}}</a>  |
+           <a href= {% url 'editar_gerente' gerente.id %}>Editar</a>  |
+           <a href= {% url 'borrar_gerente' gerente.id %}>Borrar</a>  
+        </li>
     {% endfor %}
 
 {% endblock "body_block" %}

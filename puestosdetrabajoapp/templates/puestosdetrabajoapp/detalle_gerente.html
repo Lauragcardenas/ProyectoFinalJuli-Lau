@@ -1,0 +1,19 @@
+{% extends 'pymeapp/index.html' %}
+
+{% block "header_block" %}
+{% endblock "header_block" %}
+
+{% block "body_block" %}
+
+    <p>
+        <a href={% url "gerentes" %}>Volver</a>
+    </p>
+
+    <p>
+        <li>Nombre: {{object.nombre}}</li>
+        <li>Apellido: {{object.apellido}}</li>
+        <li>DNI: {{object.dni}}</li>
+        <li>Email: {{object.email}}</li>
+    </p>
+
+{% endblock "body_block" %}
