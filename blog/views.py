@@ -11,13 +11,25 @@ def editar_usuario(request):
     user_extension_logued, _ =UserExtension.objects.get_or_create(user=request.user)
     
     if request.method == "POST":
-        form= EditFullUser(request.POST)
+        form= EditFullUser(request.POST, request.FILES)
         
         if form.is_valid():
-            username= form.cleaned_data["username"]
-            form.save()
-            #return render(request, "blog/index.html", {"msj": f"Se crea correctamente al usuario {username}"})
-            return redirect("login")
+           
+            request.user.email=form.cleaned_data["email"]
+            request.user.first_name=form.cleaned_data["first_name"]
+            request.user.last_name=form.cleaned_data["last_name"]
+            request.user.email=form.cleaned_data["email"]
+            user_extension_logued.avatar=form.cleaned_data["avatar"]
+            user_extension_logued.link=form.cleaned_data["link"]
+            user_extension_logued.more_description=form.cleaned_data["more_description"]
+            
+            if form.cleaned_data["password1"] !="" and form.cleaned_data["password1"]==form.cleaned_data["password2"]:
+                request.user.set_password(form.cleaned_data["password1"])
+            
+            request.user.save()
+            user_extension_logued.save()
+            
+            return redirect("pymeapp")
         else:
             return render(request, "blog/editar_usuario.html", {"form": form, "msj": "El formulario no es valido"})
     
