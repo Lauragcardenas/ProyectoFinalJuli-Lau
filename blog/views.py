@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import NuestroUserForm, EditFullUser
+from .forms import EditFullUser
 from django.contrib.auth.decorators import login_required
 from .models import UserExtension
 
@@ -16,10 +16,10 @@ def editar_usuario(request):
         if form.is_valid():
             username= form.cleaned_data["username"]
             form.save()
-            #return render(request, "accounts/index.html", {"msj": f"Se crea correctamente al usuario {username}"})
+            #return render(request, "blog/index.html", {"msj": f"Se crea correctamente al usuario {username}"})
             return redirect("login")
         else:
-            return render(request, "accounts/editar_usuario.html", {"form": form, "msj": "El formulario no es valido"})
+            return render(request, "blog/editar_usuario.html", {"form": form, "msj": "El formulario no es valido"})
     
     
     form = EditFullUser(
@@ -33,5 +33,5 @@ def editar_usuario(request):
         "link": user_extension_logued.link,
         "more_description": user_extension_logued.more_description
         })
-    return render(request, "accounts/editar_usuario.html", {"form": form})
+    return render(request, "blog/editar_usuario.html", {"form": form})
 
