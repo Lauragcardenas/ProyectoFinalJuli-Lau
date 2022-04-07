@@ -1,0 +1,23 @@
+{% extends 'pymeapp/index.html' %}
+
+{% block "header_block" %}
+{% endblock "header_block" %}
+
+{% block "body_block" %}  
+    <p>
+    {% if msj %}
+        {{msj}}
+    {% endif %}
+    </p>
+    
+<p>
+    <li>{{request.user.first_name}}</li>
+    <li>{{request.user.last_name}}</li>
+    <li>{{request.user.email}}</li>
+    <li><img src="{{mas_datos.avatar.url}}" alt="imagen de perfil"></li>
+    <li>{{mas_datos.link}}</li>
+</p>
+
+<a href={% url "editar_usuario" %}>Editar datos</a>
+
+{% endblock "body_block" %}
