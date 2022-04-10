@@ -13,6 +13,7 @@
 <form action= {% url 'editar_usuario' %} method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
+        {{form.media}}
         {{form.as_table}}
     </table>
     <button>Guardar Cambios</button>

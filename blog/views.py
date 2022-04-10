@@ -43,7 +43,8 @@ def editar_usuario(request):
         "last_name": request.user.last_name,
         "avatar": user_extension_logued.avatar,
         "link": user_extension_logued.link,
-        "more_description": user_extension_logued.more_description
+        "more_description": user_extension_logued.more_description,
+        "tarjeta_presentacion": user_extension_logued.tarjeta_presentacion,
         })
     return render(request, "blog/editar_usuario.html", {"form": form})
 

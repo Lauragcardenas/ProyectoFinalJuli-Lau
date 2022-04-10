@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
+from ckeditor.fields import RichTextFormField
 
 class EditFullUser(forms.Form):
     email= forms.EmailField()
@@ -12,3 +12,4 @@ class EditFullUser(forms.Form):
     avatar= forms.ImageField(required=False)
     link= forms.URLField(required=False)
     more_description=forms.CharField(max_length=100, required=False)
+    tarjeta_presentacion=RichTextFormField(required=False)
