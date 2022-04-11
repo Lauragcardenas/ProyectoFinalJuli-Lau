@@ -1,0 +1,27 @@
+{% extends 'pymeapp/index.html' %}
+
+{% block "header_block" %}
+{% endblock "header_block" %}
+
+{% block "body_block" %}
+
+    <p>
+        <a href={% url "Blog" %}>Volver</a>
+    </p>
+
+    <p>
+        <li>Titulo: {{object.titulo}}</li>
+        <li>Subtitulo: {{object.subtitulo}}</li>
+        <li>Cuerpo: {{object.cuerpo | safe }}</li>
+        <li>Autor: {{object.autor}}</li>
+        <li>Fecha: {{object.fecha_creacion | safe }}</li>
+        <li>avatar: {{object.avatar}}</li>
+        <p>    
+            {% if mas_datos.avatar %}
+                <img src="{{mas_datos.avatar.url}}" alt="imagen de perfil">
+            {% endif %}
+        </p>
+    </p>
+
+{% endblock "body_block" %}
+

@@ -1,0 +1,25 @@
+{% extends 'pymeapp/index.html' %}
+
+{% block "header_block" %}
+{% endblock "header_block" %}
+
+{% block "body_block" %}
+
+    <p>
+        <a href={% url "crear_blog" %}>Volver</a>
+    </p>
+    <p>    
+        {% if mas_datos.avatar %}
+            <img src="{{mas_datos.avatar.url}}" alt="imagen de perfil">
+        {% endif %}
+    </p>
+    <form action= {% url 'crear_blog' %} method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{form.media}}
+            {{form.as_table}}
+        </table>
+        <button>Cargar Blog</button>
+    </form>
+
+{% endblock "body_block" %}

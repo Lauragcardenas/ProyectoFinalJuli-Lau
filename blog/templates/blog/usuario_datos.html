@@ -14,9 +14,13 @@
     <li>{{request.user.first_name}}</li>
     <li>{{request.user.last_name}}</li>
     <li>{{request.user.email}}</li>
-    <li><img src="{{mas_datos.avatar.url}}" alt="imagen de perfil"></li>
+<p>    
+    {% if mas_datos.avatar %}
+        <img src="{{mas_datos.avatar.url}}" alt="imagen de perfil">
+    {% endif %}
+</p>
+<p> 
     <li>{{mas_datos.link}}</li>
-    <li>{{request.user.tarjeta_presentacion}}</li>
 </p>
 
 <a href={% url "editar_usuario" %}>Editar datos</a>
