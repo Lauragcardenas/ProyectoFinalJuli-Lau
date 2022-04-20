@@ -10,4 +10,5 @@ urlpatterns = [
     #path("registrarse/", registrarse, name="registrarse"),
     #path("logout/", LogoutView.as_view(template_name="accounts/logout.html"), name="logout"),
     path("blog/<int:pk>", views.Detalleblog.as_view(),name="detalle_blog"),
+    path("lista_blog/",views.lista_blog,name="lista_blog"),
 ]
