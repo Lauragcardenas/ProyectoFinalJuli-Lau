@@ -83,4 +83,5 @@ def lista_blog(request):
         Blog= Blog.objects.all()
     
     form= BlogBusqueda()
-    return render(request, "puestosdetrabajoapp/lista_gerentes.html", {"form": form, "gerentes": gerentes})
+    return render(request, "blog/detalle_blog.html", {"form": form, "blog": blog})
+
