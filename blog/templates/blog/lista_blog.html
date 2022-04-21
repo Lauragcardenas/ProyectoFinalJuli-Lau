@@ -6,9 +6,9 @@
 {% block "body_block" %}
 
     <p>
-        <a href={% url "Blog" %}>Volver</a>
+        <a href={% url "lista_blog" %}>Volver</a>
     </p>
-    <p>    
+    {% comment "" %}<p>    
         {% if mas_datos.avatar %}
             <img src="{{mas_datos.avatar.url}}" alt="imagen de perfil">
         {% endif %}
@@ -19,9 +19,10 @@
             {{form.media}}
             {{form.as_table}}
         </table>
+        <button>Cargar Blog</button>
     </form>
-
-{% endblock "body_block" %}
+{% endcomment %}
+{% comment "" %}<p>
     <p>
         <li>Titulo: {{object.titulo}}</li>
         <li>Subtitulo: {{object.subtitulo}}</li>
@@ -35,6 +36,23 @@
             {% endif %}
         </p>
     </p>
+{% endcomment %}
+
+    <form action="" method="get">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+    {% comment "" %}<input type="submit" value="Crear">{% endcomment %}
+        <button>Buscar</button>
+    </form>
+
+    {% for Blog in Blogs %}
+        <li>
+           <a href= {% url 'detalle_blog' Blog.id %}>{{Blog}}</a>  |
+           <a href= {% url 'editar_blog' Blog.id %}>Editar</a>  |
+           <a href= {% url 'borrar_blog' Blog.id %}>Borrar</a>  
+        </li>
+    {% endfor %}
 
 {% endblock "body_block" %}
-

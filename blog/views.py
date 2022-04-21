@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import EditFullUser, BlogFormulario, BlogBusqueda
 from django.contrib.auth.decorators import login_required
-from .models import UserExtension, blog
+from .models import UserExtension, Blog
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 @login_required
@@ -62,7 +65,7 @@ def crear_blog(request):
         
         if form.is_valid():
             data= form.cleaned_data
-            Blog= blog(titulo=data["titulo"], subtitulo=data ["subtitulo"], cuerpo=data["cuerpo"], autor=data["autor"], fecha_creacion=data["fecha_creacion"], imagen=data["imagen"])
+            Blog=Blog(titulo=data["titulo"], subtitulo=data ["subtitulo"], cuerpo=data["cuerpo"], autor=data["autor"], fecha_creacion=data["fecha_creacion"], imagen=data["imagen"])
             Blog.save()
             return render(request, "pymeapp/index.html", {})
     
@@ -71,17 +74,26 @@ def crear_blog(request):
     return render(request, "blog/blog.html", {"form": form})
 
 class Detalleblog(DetailView):
-    model= blog
+    model= Blog
     template_name= "blog/detalle_blog.html"
+    
+class EditarBlog(LoginRequiredMixin, UpdateView):
+    model= Blog
+    success_url= "/blog/Blog/"
+    fields= ["titulo", "subtitulo", "cuerpo", "autor","fecha_creacion", "imagen"]     
+
+class BorrarBlog(LoginRequiredMixin, DeleteView):
+    model= Blog
+    success_url= "/blog/Blog/"    
+    
     
 def lista_blog(request):
     
-    nombre_a_buscar=request.GET.get("nombre",None)
+    nombre_a_buscar=request.GET.get("titulo",None)
     if nombre_a_buscar is not None:
-        blog = blog.objects.filter(nombre__icontains=nombre_a_buscar)
+        blogs = Blog.objects.filter(titulo__icontains=nombre_a_buscar)
     else:
-        Blog= Blog.objects.all()
+        blogs= Blog.objects.all()
     
     form= BlogBusqueda()
-    return render(request, "blog/detalle_blog.html", {"form": form, "blog": blog})
-
+    return render(request, "blog/lista_blog.html", {"form": form, "blogs": blogs})

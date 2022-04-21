@@ -9,9 +9,7 @@ class UserExtension(models.Model):
     link= models.URLField(null=True)
     more_description= models.CharField(max_length=100)
     
-
-
-class blog(models.Model):
+class Blog(models.Model):
     titulo=models.CharField(max_length=100)
     subtitulo=models.CharField(max_length=100)
     cuerpo=RichTextField(blank=True, null=True)
