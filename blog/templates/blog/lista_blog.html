@@ -46,6 +46,12 @@
     {% comment "" %}<input type="submit" value="Crear">{% endcomment %}
         {% comment "" %}<button>Buscar</button>
     </form>{% endcomment %}
+    
+    <p>
+        {% if blogs %}
+        No hay valores para cargar en la lista?
+        {% endif %}
+        </p>
 
 
     {% for blog in blogs %}

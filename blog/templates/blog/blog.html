@@ -4,6 +4,11 @@
 {% endblock "header_block" %}
 
 {% block "body_block" %}
+    <p>
+    {% if error %}
+    Hubo un error vuelva a cargar los datos!
+    {% endif %}
+    </p>
 
     <p>
         <a href={% url "crear_blog" %}>Volver</a>

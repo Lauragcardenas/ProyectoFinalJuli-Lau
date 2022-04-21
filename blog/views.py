@@ -8,7 +8,6 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
 @login_required
 def editar_usuario(request):
     
@@ -97,3 +96,30 @@ def lista_blog(request):
     
     form= BlogBusqueda()
     return render(request, "blog/lista_blog.html", {"form": form, "blogs": blogs})
+
+
+#def mensaje_lista(request):
+#    blogs= Blog.objects.all()
+#    if Blog is not None:
+#        return redirect("crear_blog")
+#    else: 
+#        # return render(request, "pymeapp/login.html", {"login_form": login_form})
+#        return render(request, "blog/lista_blog.html", {"form": blogs, "msj": "No hay valores para cargar en la lista"})  
+        
+                
+def error(request):
+    
+    if request.method== "POST":
+        form= BlogFormulario(request.POST, request.FILES)
+        
+        if form.is_valid():
+            data= form.cleaned_data
+            blog=Blog(titulo=data["titulo"], subtitulo=data ["subtitulo"], cuerpo=data["cuerpo"], autor=data["autor"], fecha_creacion=data["fecha_creacion"], imagen=data["imagen"])
+            blog.save()
+            return render(request, "pymeapp/index.html", {}) 
+        else:
+            return render(request, "blog/blog.html", {"form": form, "msj": "Hubo un error vuelva a cargar los datos"}) 
+                
+    form= BlogFormulario()
+    return render(request, "blog/blog.html", {"form": form})
+            
