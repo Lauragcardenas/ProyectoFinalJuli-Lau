@@ -4,11 +4,11 @@
 {% endblock "header_block" %}
 
 {% block "body_block" %}
-
+{% comment "" %}
     <p>
         <a href={% url "lista_blog" %}>Volver</a>
     </p>
-    {% comment "" %}<p>    
+    
         {% if mas_datos.avatar %}
             <img src="{{mas_datos.avatar.url}}" alt="imagen de perfil">
         {% endif %}
@@ -21,7 +21,7 @@
         </table>
         <button>Cargar Blog</button>
     </form>
-{% endcomment %}
+
 {% comment "" %}<p>
     <p>
         <li>Titulo: {{object.titulo}}</li>
@@ -37,21 +37,22 @@
         </p>
     </p>
 {% endcomment %}
-
+{% comment "" %}
     <form action="" method="get">
         {% csrf_token %}
         <table>
             {{form.as_table}}
         </table>
     {% comment "" %}<input type="submit" value="Crear">{% endcomment %}
-        <button>Buscar</button>
-    </form>
+        {% comment "" %}<button>Buscar</button>
+    </form>{% endcomment %}
 
-    {% for Blog in Blogs %}
+
+    {% for blog in blogs %}
         <li>
-           <a href= {% url 'detalle_blog' Blog.id %}>{{Blog}}</a>  |
-           <a href= {% url 'editar_blog' Blog.id %}>Editar</a>  |
-           <a href= {% url 'borrar_blog' Blog.id %}>Borrar</a>  
+           <a href= {% url 'detalle_blog' blog.id %}>{{blog}}</a>  |
+           <a href= {% url 'editar_blog' blog.id %}>Editar</a>  |
+           <a href= {% url 'borrar_blog' blog.id %}>Borrar</a>  
         </li>
     {% endfor %}
 

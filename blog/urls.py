@@ -9,8 +9,8 @@ urlpatterns = [
     path("blog/", crear_blog ,name="crear_blog"),
     #path("registrarse/", registrarse, name="registrarse"),
     #path("logout/", LogoutView.as_view(template_name="accounts/logout.html"), name="logout"),
-    path("blog/", views.Detalleblog.as_view(),name="detalle_blog"),
+    path("blog/<int:pk>/", views.Detalleblog.as_view(),name="detalle_blog"),
     path("lista_blog/", views.lista_blog,name="lista_blog"),
-    path("blog/editar", views.EditarBlog.as_view(),name="editar_blog"),
-    path("blog/borrar", views.BorrarBlog.as_view(),name="borrar_blog"),
+    path("blog/editar/<int:pk>/", views.EditarBlog.as_view(),name="editar_blog"),
+    path("blog/borrar/<int:pk>/", views.BorrarBlog.as_view(),name="borrar_blog"),
 ]

@@ -66,7 +66,7 @@ def crear_blog(request):
         if form.is_valid():
             data= form.cleaned_data
             blog=Blog(titulo=data["titulo"], subtitulo=data ["subtitulo"], cuerpo=data["cuerpo"], autor=data["autor"], fecha_creacion=data["fecha_creacion"], imagen=data["imagen"])
-            Blog.save()
+            blog.save()
             return render(request, "pymeapp/index.html", {})
     
     

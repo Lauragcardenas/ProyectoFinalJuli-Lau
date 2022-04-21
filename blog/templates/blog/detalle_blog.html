@@ -6,7 +6,7 @@
 {% block "body_block" %}
 
     <p>
-        <a href={% url "Blog" %}>Volver</a>
+        <a href={% url "crear_blog" %}>Volver</a>
     </p>
     <p>    
         {% if mas_datos.avatar %}
@@ -21,7 +21,7 @@
         </table>
     </form>
 
-{% endblock "body_block" %}
+
     <p>
         <li>Titulo: {{object.titulo}}</li>
         <li>Subtitulo: {{object.subtitulo}}</li>
